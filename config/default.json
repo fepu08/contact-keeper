@@ -1,3 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://<username>:<password>@contactkeeper.dk3dl.mongodb.net/<dbname>?retryWrites=true&w=majority"
-}
