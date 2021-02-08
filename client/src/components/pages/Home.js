@@ -7,6 +7,8 @@ import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
   const contactContext = useContext(ContactContext);
+  const { contacts } = contactContext;
+
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Home = () => {
         <ContactForm />
       </div>
       <div>
-        {contactContext.contacts.length !== 0 && <ContactFilter />}
+        {contacts !== null && contacts.length !== 0 && <ContactFilter />}
         <Contacts />
       </div>
     </div>

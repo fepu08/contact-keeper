@@ -9,13 +9,15 @@ import {
   CLEAR_CURRENT,
   UPDATE_CONTACT,
   FILTER_CONTACTS,
+  GET_CONTACTS,
+  CLEAR_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR
 } from '../types';
 
 const ContactState = (props) => {
   const initialState = {
-    contacts: [],
+    contacts: null,
     current: null,
     filtered: null,
     error: null
@@ -39,6 +41,16 @@ const ContactState = (props) => {
     }
   };
 
+  // Get Contacts
+  const getContacts = async () => {
+    try {
+      const res = await axios.get('/api/contacts');
+      dispatch({ type: GET_CONTACTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    }
+  };
+
   // Update Contact
   const updateContact = (contact) => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
@@ -47,6 +59,11 @@ const ContactState = (props) => {
   // Delete Contact
   const deleteContact = (id) => {
     dispatch({ type: DELETE_CONTACT, payload: id });
+  };
+
+  // Clear Contact
+  const clearContacts = (id) => {
+    dispatch({ type: CLEAR_CONTACTS });
   };
 
   // Set Current Contact
@@ -76,7 +93,9 @@ const ContactState = (props) => {
         filtered: state.filtered,
         error: state.error,
         addContact,
+        getContacts,
         deleteContact,
+        clearContacts,
         setCurrent,
         clearCurrent,
         updateContact,
