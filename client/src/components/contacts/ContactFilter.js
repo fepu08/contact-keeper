@@ -19,6 +19,7 @@ const ContactFilter = () => {
       clearFilter();
     }
   };
+
   return (
     <form>
       <input
@@ -26,7 +27,7 @@ const ContactFilter = () => {
         type='text'
         placeholder='Filter Contacts'
         onChange={onChange}
-      ></input>
+      />
     </form>
   );
 };
